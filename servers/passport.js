@@ -15,26 +15,28 @@ passport.deserializeUser((id, done) => {
   });
 });
 
-passport.use(new GoogleStrategy({
-  clientID: keys.googleClientId,
-  clientSecret: keys.googleClientSecret,
-  callbackURL: '/auth/google/callback',
-}, (accessToken, refreshToken, profile, done) => {
-  // console.log('accessToken',accessToken)
-  // console.log('refreshToken',refreshToken)
-  // console.log('profile',profile)
-  User.findOne({googleId: profile.id})
-      //promise for checing existing record in db
-      .then((existingUser) => {
-        if (existingUser) {
-          //have a record with the given profile ID
-          done(null, existingUser); //(error,userRecord)
+passport.use(
+  new GoogleStrategy({
+    clientID: keys.googleClientId,
+    clientSecret: keys.googleClientSecret,
+    callbackURL: '/auth/google/callback',
+    proxy: true
+  }, (accessToken, refreshToken, profile, done) => {
+    // console.log('accessToken',accessToken)
+    // console.log('refreshToken',refreshToken)
+    // console.log('profile',profile)
+    User.findOne({googleId: profile.id})
+        //promise for checing existing record in db
+        .then((existingUser) => {
+          if (existingUser) {
+            //have a record with the given profile ID
+            done(null, existingUser); //(error,userRecord)
 
-        } else {
-          new User({googleId: profile.id})//save() the data into db
-            .save()
-            .then(user => done(null, user));
-        }
-      });
+          } else {
+            new User({googleId: profile.id})//save() the data into db
+              .save()
+              .then(user => done(null, user));
+          }
+        });
 
-}));
+  }));
