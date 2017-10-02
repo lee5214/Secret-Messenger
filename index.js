@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const keys = require('./config/keys');
 
 require('./models/User');//first create schema, then below passport could pull it
+require('./models/Survey');
 require('./servers/passport'); //passport.js will run immediately
 
 mongoose.connect(keys.mongoURI);
@@ -26,6 +27,7 @@ app.use(passport.session());
 
 require('./routes/authRoutes')(app);
 require('./routes/billingRoutes')(app);
+require('./routes/surveyRoutes')(app);
 
 //config only for production env
 if(process.env.NODE_ENV === 'production'){
