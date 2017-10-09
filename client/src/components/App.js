@@ -9,7 +9,10 @@ import * as actions from '../actions';
 import Header from './Header';
 import Landing from './Landing';
 import Dashboard from './Dashboard';
-import SurveyNew from './surveys/SurveyNew'
+import SurveyNew from './surveys/SurveyNew';
+import { MuiThemeProvider } from 'material-ui/styles';
+import theme from './themes/defaultTheme';
+
 
 class App extends Component {
   componentDidMount () {
@@ -18,16 +21,20 @@ class App extends Component {
 
   render () {
     return (
-      <div className="container">
-        <BrowserRouter>
-          <div>
-            <Header/>
-            <Route exact={true} path="/" component={Landing}/>
-            <Route exact path="/surveys" component={Dashboard}/>
-            <Route path="/surveys/new" component={SurveyNew}/>
-          </div>
-        </BrowserRouter>
-      </div>
+      <MuiThemeProvider theme={theme}>
+        <div className="container">
+          <BrowserRouter>
+            <div>
+              <Header/>
+              <div style={{paddingTop: '64px'}}>
+                <Route exact={true} path="/" component={Landing}/>
+                <Route exact path="/surveys" component={Dashboard}/>
+                <Route path="/surveys/new" component={SurveyNew}/>
+              </div>
+            </div>
+          </BrowserRouter>
+        </div>
+      </MuiThemeProvider>
     );
   }
 }

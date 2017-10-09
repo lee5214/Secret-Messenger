@@ -2,6 +2,16 @@ import React,{Component} from 'react'
 import StripeCheckout from 'react-stripe-checkout'
 import {connect} from 'react-redux'
 import * as actions from '../actions'
+import Button from 'material-ui/Button'
+import PropTypes from 'prop-types';
+import { withStyles } from 'material-ui/styles';
+const styles = theme => ({
+  root: {
+    marginTop: theme.spacing.unit * 3,
+    width: '100%',
+  },
+
+});
 
 class Payments extends Component {
   render(){
@@ -16,12 +26,13 @@ class Payments extends Component {
         token={token => this.props.handleToken(token)}
         stripeKey={process.env.REACT_APP_STRIPE_KEY}
       >
-        <button className="btn waves-effect waves-light">ADD CREDITS
-        </button>
+        <Button>
+          {'ADD CREDITS'}
+        </Button>
 
       </StripeCheckout>
     )
   }
 }
 
-export default connect(null,actions)(Payments);
+export default connect(null,actions)(withStyles(styles)(Payments));

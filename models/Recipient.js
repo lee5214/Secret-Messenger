@@ -7,3 +7,4 @@ const recipientSchema = new Schema({
 });
 
 module.exports = recipientSchema; //export to Survey!
+

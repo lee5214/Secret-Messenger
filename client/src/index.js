@@ -1,7 +1,8 @@
 //data layer control (redux)
 //when import none js file, need add extension like .css
 //use none relative path like './', webpack will think you are importing a npm module
-import 'materialize-css/dist/css/materialize.min.css';
+
+//import 'materialize-css/dist/css/materialize.min.css';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -11,9 +12,9 @@ import reduxThunk from 'redux-thunk';
 
 import App from './components/App';
 import reducers from './reducers';
-
 //use for test sendgrid function, send POST in terminal
 import axios from 'axios';
+
 window.axios = axios;
 /*
 then in console:
