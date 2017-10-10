@@ -4,19 +4,21 @@ import { Link } from 'react-router-dom';
 //reduxForm is very similar as connect function
 import _ from 'lodash';
 
-import SurveyField from './SurveyField';
+import SurveyField from './InputField';
 import validateEmails from '../../utils/validateEmails';
-import formFIELDS from './formFields'
-
+import formFields from './formFields';
+import TextField from 'material-ui/TextField';
+import Button from 'material-ui/Button';
 
 class SurveyForm extends Component {
   renderFields () {
-    return _.map(formFIELDS, ({label, name}) => {
-      return <Field key={name}
+    return _.map(formFields, ({label, name}) => {
+      return (<Field key={name}
                     component={SurveyField}
                     type='text'
                     label={label}
-                    name={name}/>;
+                    name={name}
+              />);
     });
   }
 
@@ -25,13 +27,17 @@ class SurveyForm extends Component {
       <div>
         <form onSubmit={this.props.handleSubmit(this.props.onSurveySubmit)}>
           {this.renderFields()}
-          <Link to='/surveys' className='red btn-left btn-flat white-text'>
-            Cancel
-          </Link>
-          <button type='submit' className='teal btn-flat right white-text'>
+
+          <Button>
+            <Link to='/surveys'>
+              Cancel
+            </Link>
+          </Button>
+
+          <Button type='submit'>
             Next
-            <i className='material-icons right'>done</i>
-          </button>
+            <i className='material-icons'>done</i>
+          </Button>
         </form>
         SurveyForm!
       </div>
@@ -44,7 +50,7 @@ function validate (values) {
 
   errors.recipients = validateEmails(values.recipients || '');
 
-  _.each(formFIELDS, ({label, name}) => {
+  _.each(formFields, ({label, name}) => {
     //values.name => find the prop called name, it's not the same
     if (!values[name]) {
       errors[name] = `You must provide ${label}`;

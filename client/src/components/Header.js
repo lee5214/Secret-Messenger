@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import Payments from './Payments';
 
 import { withStyles, } from 'material-ui/styles';
-
+import classNames from 'classnames';
 import ToolbarTitle from 'material-ui/Toolbar';
 import Toolbar from 'material-ui/Toolbar';
 import Drawer from 'material-ui/Drawer';
@@ -18,8 +18,8 @@ import NestedList from './test_NestedList';
 
 const styles = theme => ({
 
-  root:{
-    backgroundColor: theme.palette.common.black
+  root: {
+    backgroundColor: theme.palette.common.black,
   },
   flex: {
     flex: 1,
@@ -38,9 +38,17 @@ const styles = theme => ({
 class Header extends Component {
   //array for mutiple elements output!
 
-  state = {
-    open: false,
-  };
+  constructor (props) {
+    super(props);
+    this.state = {
+      open: false,
+    };
+    this.handleDrawerClose = this.handleDrawerClose.bind(this);
+  }
+
+  handleDrawerClose () {
+    this.setState({open: false});
+  }
 
   renderContent () {
     const {classes} = this.props;
@@ -72,13 +80,11 @@ class Header extends Component {
 
   handleDrawerToggle = () => this.setState({open: !this.state.open});
 
-  handleDrawerClose = () => this.setState({open: false});
-
   render () {
     const {classes} = this.props;
     //console.log(this.props)
     return (
-      <AppBar position='fixed' className={classes.root}>
+      <AppBar position='fixed' className={classNames(classes.root)}>
         <Toolbar>
           <IconButton
             color="contrast"
@@ -107,7 +113,7 @@ class Header extends Component {
           onRequestClose={this.handleDrawerToggle}
 
         >
-          <NestedList onLinkClick={this.handleDrawerClose} />
+          <NestedList onLinkClick={this.handleDrawerClose}/>
         </Drawer>
       </AppBar>
 
@@ -119,5 +125,6 @@ class Header extends Component {
 function mapStateToProps (state) {
   return {auth: state.auth};
 }
+
 //const connectC = //const css = withStyles(styles)(Header)
 export default connect(mapStateToProps)(withStyles(styles)(Header));
