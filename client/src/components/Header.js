@@ -17,11 +17,20 @@ import { CircularProgress } from 'material-ui/Progress';
 import NestedList from './test_NestedList';
 
 const styles = theme => ({
+
+  root:{
+    backgroundColor: theme.palette.common.black
+  },
   flex: {
     flex: 1,
   },
-  white: {
-    color: 'white',
+  whiteText: {
+    color: theme.palette.common.white,
+  },
+  link: {
+    flex: 1,
+    color: theme.palette.common.white,
+    textDecoration: 'none',
   },
 
 });
@@ -45,12 +54,16 @@ class Header extends Component {
           [
             <Payments key='pay'/>,
             <ToolbarTitle key='credits'>
-              Credits:
-              <div>
-                ${this.props.auth.credits}</div>
+              <Typography className={classes.whiteText}>
+                Credits: ${this.props.auth.credits}
+              </Typography>
             </ToolbarTitle>,
             <ToolbarTitle key={'log'}>
-              <a href="/api/logout" className={classes.white}>Log Out</a>
+              <a href="/api/logout" className={classes.link}>
+                <Typography className={classes.whiteText}>
+                  Log Out
+                </Typography>
+              </a>
             </ToolbarTitle>,
           ]
         );
@@ -65,7 +78,7 @@ class Header extends Component {
     const {classes} = this.props;
     //console.log(this.props)
     return (
-      <AppBar position='fixed'>
+      <AppBar position='fixed' className={classes.root}>
         <Toolbar>
           <IconButton
             color="contrast"
@@ -76,10 +89,10 @@ class Header extends Component {
             <MenuIcon/>
           </IconButton>
 
-          <Link className={classes.flex}
+          <Link className={classes.link}
                 to={this.props.auth ? '/surveys' : '/'}>
-            <Typography type="title" className={classes.white}>
-              Email System
+            <Typography className={classes.whiteText} type="title" noWarp>
+              {'E-Voter'}
             </Typography>
           </Link>
 
@@ -92,8 +105,9 @@ class Header extends Component {
           type="temporary"
           open={this.state.open}
           onRequestClose={this.handleDrawerToggle}
+
         >
-          <NestedList/>
+          <NestedList onLinkClick={this.handleDrawerClose} />
         </Drawer>
       </AppBar>
 
@@ -105,6 +119,5 @@ class Header extends Component {
 function mapStateToProps (state) {
   return {auth: state.auth};
 }
-
 //const connectC = //const css = withStyles(styles)(Header)
 export default connect(mapStateToProps)(withStyles(styles)(Header));

@@ -13,7 +13,7 @@ import SurveyNew from './surveys/SurveyNew';
 import { MuiThemeProvider } from 'material-ui/styles';
 import theme from './themes/defaultTheme';
 
-
+import Test from './Test'
 class App extends Component {
   componentDidMount () {
     this.props.fetchUser();
@@ -30,6 +30,7 @@ class App extends Component {
                 <Route exact={true} path="/" component={Landing}/>
                 <Route exact path="/surveys" component={Dashboard}/>
                 <Route path="/surveys/new" component={SurveyNew}/>
+                <Route path="/surveys/test" component={Test}/>
               </div>
             </div>
           </BrowserRouter>

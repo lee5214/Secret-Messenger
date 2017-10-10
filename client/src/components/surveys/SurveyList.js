@@ -4,19 +4,19 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
-import Card from 'material-ui/Card'
-import SurveyListCard from './SurveyListCard'
+import Card, { CardContent } from 'material-ui/Card';
+import Typography from 'material-ui/Typography';
 
 const styles = theme => ({
   root: {
     flexGrow: 1,
   },
   card: {
-    minWidth: 200,
+    minWidth: 300,
     maxWidth: 400,
     flex: 1,
     align: 'center',
-    margin: 40,
+
   },
   bullet: {
     display: 'inline-block',
@@ -43,7 +43,29 @@ class SurveyList extends Component {
     return this.props.surveys.reverse().map(survey => {
       const {classes} = this.props;
       return (
-       <SurveyListCard survey={survey} />
+        <Grid item>
+          <Card className={classes.card} key={survey._id}>
+            <CardContent>
+              <Typography type="body1" className={classes.title}>
+
+              </Typography>
+              <Typography type="headline" component="h2">
+                {survey.title}
+
+              </Typography>
+              <Typography component="p">
+                {survey.body}
+              </Typography>
+              <p className={classes.pos}>
+                Sent On: {new Date(survey.dateSent).toLocaleDateString()}
+              </p>
+            </CardContent>
+            <div className={classes.pos}>
+              <a>Yes: {survey.yes}</a>
+              <a>No: {survey.no}</a>
+            </div>
+          </Card>
+        </Grid>
       );
     });
   }
@@ -51,13 +73,11 @@ class SurveyList extends Component {
   render () {
     const {classes} = this.props;
     return (
-      <Grid container className={classes.root}>
-        <Grid item xs={12}>
-          <Grid container align={'center'}>
-              {this.renderSurveys()}
+
+          <Grid container justify={'center'} >
+            {this.renderSurveys()}
           </Grid>
-        </Grid>
-      </Grid>
+
     );
   }
 }

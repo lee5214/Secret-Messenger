@@ -10,6 +10,7 @@ import SendIcon from 'material-ui-icons/Send';
 import ExpandLess from 'material-ui-icons/ExpandLess';
 import ExpandMore from 'material-ui-icons/ExpandMore';
 import StarBorder from 'material-ui-icons/StarBorder';
+import Link from 'react-router-dom/Link';
 
 const styles = theme => ({
   root: {
@@ -22,6 +23,8 @@ const styles = theme => ({
   },
 });
 
+
+
 class NestedList extends React.Component {
   state = { open: true };
 
@@ -32,19 +35,27 @@ class NestedList extends React.Component {
   render() {
     const classes = this.props.classes;
     return (
-      <List className={classes.root} subheader={<ListSubheader>Nested List Items</ListSubheader>}>
-        <ListItem button>
-          <ListItemIcon>
-            <SendIcon />
-          </ListItemIcon>
-          <ListItemText inset primary="Sent mail" />
-        </ListItem>
+      <List className={classes.root} subheader={<ListSubheader>Side Bar</ListSubheader>}>
+
+        <Link to='/surveys/new/' onClick={this.props.onLinkClick} >
+          <ListItem button >
+            <ListItemIcon>
+              <SendIcon />
+            </ListItemIcon>
+            <ListItemText inset primary="New Email" >
+            </ListItemText>
+          </ListItem>
+        </Link>
+
+        <Link to='/surveys/test/' onClick={this.props.onLinkClick} >
         <ListItem button>
           <ListItemIcon>
             <DraftsIcon />
           </ListItemIcon>
-          <ListItemText inset primary="Drafts" />
+          <ListItemText inset primary="Test Component" />
         </ListItem>
+        </Link>
+
         <ListItem button onClick={this.handleClick}>
           <ListItemIcon>
             <InboxIcon />
@@ -52,6 +63,7 @@ class NestedList extends React.Component {
           <ListItemText inset primary="Inbox" />
           {this.state.open ? <ExpandLess /> : <ExpandMore />}
         </ListItem>
+
         <Collapse in={this.state.open} transitionDuration="auto" unmountOnExit>
           <ListItem button className={classes.nested}>
             <ListItemIcon>
@@ -60,6 +72,7 @@ class NestedList extends React.Component {
             <ListItemText inset primary="Starred" />
           </ListItem>
         </Collapse>
+
       </List>
     );
   }
