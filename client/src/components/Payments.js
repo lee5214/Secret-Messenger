@@ -1,22 +1,21 @@
-import React,{Component} from 'react'
-import StripeCheckout from 'react-stripe-checkout'
-import {connect} from 'react-redux'
-import * as actions from '../actions'
-import Button from 'material-ui/Button'
-import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+import StripeCheckout from 'react-stripe-checkout';
+import { connect } from 'react-redux';
+import * as actions from '../actions';
+import Button from 'material-ui/Button';
 import { withStyles } from 'material-ui/styles';
+import Typography from 'material-ui/Typography';
+
 const styles = theme => ({
-  root: {
-    marginTop: theme.spacing.unit * 3,
-    width: '100%',
-  },
+
 
 });
 
 class Payments extends Component {
-  render(){
-    //debugger;
-    return(
+
+  render () {
+    const {classes} = this.props
+    return (
       //amount in cents
       //token is callback object get from stripe representing the charge info
       <StripeCheckout
@@ -27,12 +26,14 @@ class Payments extends Component {
         stripeKey={process.env.REACT_APP_STRIPE_KEY}
       >
         <Button>
-          {'ADD CREDITS'}
+          <Typography style={{color:'white'}}>
+            {'ADD CREDITS'}
+          </Typography>
         </Button>
 
       </StripeCheckout>
-    )
+    );
   }
 }
 
-export default connect(null,actions)(withStyles(styles)(Payments));
+export default connect(null, actions)(withStyles(styles)(Payments));

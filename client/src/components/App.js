@@ -7,13 +7,18 @@ import { connect } from 'react-redux';
 
 import * as actions from '../actions';
 import Header from './Header';
-import Landing from './Landing';
+import LandingPage from './LandingPage';
 import Dashboard from './Dashboard';
 import SurveyNew from './surveys/SurveyNew';
 import { MuiThemeProvider } from 'material-ui/styles';
-import theme from './themes/defaultTheme';
+import dashboardTheme from './themes/dashboardTheme';
+import headerTheme from './themes/headerTheme';
+import Test from './Test';
 
-import Test from './Test'
+const styles = {
+  main: {paddingTop: '64px'},
+};
+
 class App extends Component {
   componentDidMount () {
     this.props.fetchUser();
@@ -21,21 +26,21 @@ class App extends Component {
 
   render () {
     return (
-      <MuiThemeProvider theme={theme}>
-        <div className="container">
-          <BrowserRouter>
-            <div>
-              <Header/>
-              <div style={{paddingTop: '64px'}}>
-                <Route exact={true} path="/" component={Landing}/>
+      <div className="container">
+        <BrowserRouter>
+          <div>
+            /**/
+            <Header/>
+              <div style={styles.main}>
+                <Route exact={true} path="/" component={LandingPage}/>
                 <Route exact path="/surveys" component={Dashboard}/>
-                <Route path="/surveys/new" component={SurveyNew}/>
+                  <Route path="/surveys/new" component={SurveyNew}/>
                 <Route path="/surveys/test" component={Test}/>
               </div>
-            </div>
-          </BrowserRouter>
-        </div>
-      </MuiThemeProvider>
+          </div>
+        </BrowserRouter>
+      </div>
+
     );
   }
 }

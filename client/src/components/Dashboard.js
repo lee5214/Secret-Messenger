@@ -7,10 +7,12 @@ import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 import AddIcon from 'material-ui-icons/Add';
 import Grid from 'material-ui/Grid';
+import dashboardTheme from './themes/dashboardTheme'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
 const styles = theme => ({
   root: {
-    flexGrow: 1,
+
   },
   surveyGrid: {
     flex: 1,
@@ -31,7 +33,8 @@ const styles = theme => ({
 const Dashboard = (props) => {
   const {classes} = props;
   return (
-    <Grid container justify='center' className={classes.root}>
+    <MuiThemeProvider theme={dashboardTheme}>
+    <Grid container xs={12} align={'center'} justify={'center'} className={classes.root}>
 
       <Grid item xs={12}>
         <Paper>Dashboard</Paper>
@@ -51,6 +54,7 @@ const Dashboard = (props) => {
       </Link>
 
     </Grid>
+    </MuiThemeProvider>
   );
 };
 

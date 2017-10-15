@@ -37,12 +37,30 @@ class NestedList extends React.Component {
     return (
       <List className={classes.root} subheader={<ListSubheader>Side Bar</ListSubheader>}>
 
+        <Link to='/' onClick={this.props.onLinkClick} >
+          <ListItem button >
+            <ListItemIcon>
+              <SendIcon />
+            </ListItemIcon>
+            <ListItemText inset primary="Home" >
+            </ListItemText>
+          </ListItem>
+        </Link>
+        <Link to='/surveys' onClick={this.props.onLinkClick} >
+          <ListItem button >
+            <ListItemIcon>
+              <SendIcon />
+            </ListItemIcon>
+            <ListItemText inset primary="Sent" >
+            </ListItemText>
+          </ListItem>
+        </Link>
         <Link to='/surveys/new/' onClick={this.props.onLinkClick} >
           <ListItem button >
             <ListItemIcon>
               <SendIcon />
             </ListItemIcon>
-            <ListItemText inset primary="New Email" >
+            <ListItemText inset primary="New" >
             </ListItemText>
           </ListItem>
         </Link>
@@ -72,6 +90,16 @@ class NestedList extends React.Component {
             <ListItemText inset primary="Starred" />
           </ListItem>
         </Collapse>
+
+        <Link to='/' onClick={this.props.onLinkClick} >
+          <ListItem button >
+            <ListItemIcon>
+              <SendIcon />
+            </ListItemIcon>
+            <ListItemText inset primary="About" >
+            </ListItemText>
+          </ListItem>
+        </Link>
 
       </List>
     );

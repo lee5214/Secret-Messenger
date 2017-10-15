@@ -2,21 +2,33 @@
 import React from 'react';
 import TextField from 'material-ui/TextField'
 import Paper from 'material-ui/Paper'
+import {withStyles} from 'material-ui/styles'
+import PropTypes from 'prop-types';
+const styles = theme => ({
+    root: {
+      width: '400px',
+    },
+    helperText: {
+    }
+})
 
-const style = {
-  maxWidth: '200px',
-}
-export default ({label, input, meta: {error, touched}}) => {
+const InputField = ({classes, label, input, meta: {error, touched}}) => {
   return (
     //{touched && error} => es6 syntax sugar, when true && string, it returns the string
-    <Paper style={style}>
+    <Paper>
       <TextField
         {...input}
         label={label}
         helperText={touched && error}
         margin={'normal'}
         fullWidth
+        className={classes.root}
+        helperTextClassName={classes.helperText}
       />
     </Paper>
   );
 }
+
+
+
+export default withStyles(styles)(InputField)

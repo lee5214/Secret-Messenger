@@ -4,36 +4,33 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Payments from './Payments';
 
-import { withStyles, } from 'material-ui/styles';
-import classNames from 'classnames';
+import { MuiThemeProvider, withStyles, } from 'material-ui/styles';
 import ToolbarTitle from 'material-ui/Toolbar';
 import Toolbar from 'material-ui/Toolbar';
 import Drawer from 'material-ui/Drawer';
 import AppBar from 'material-ui/AppBar';
 import Typography from 'material-ui/Typography';
 import IconButton from 'material-ui/IconButton';
+import Menu, { MenuItem } from 'material-ui/Menu';
 import MenuIcon from 'material-ui-icons/Menu';
 import { CircularProgress } from 'material-ui/Progress';
 import NestedList from './test_NestedList';
+import theme from './themes/headerTheme';
+import MoreVertIcon from 'material-ui-icons/MoreVert';
 
 const styles = theme => ({
-
-  root: {
-    backgroundColor: theme.palette.common.black,
-  },
   flex: {
     flex: 1,
   },
-  whiteText: {
-    color: theme.palette.common.white,
-  },
   link: {
     flex: 1,
-    color: theme.palette.common.white,
     textDecoration: 'none',
   },
-
 });
+
+const options = [
+  'Log Out',
+];
 
 class Header extends Component {
   //array for mutiple elements output!
@@ -41,13 +38,14 @@ class Header extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      open: false,
+      mainDrawerOpen: false,
+      dotDrawerOpen: false,
     };
-    this.handleDrawerClose = this.handleDrawerClose.bind(this);
+    this.handleMainDrawerClose = this.handleMainDrawerClose.bind(this);
   }
 
-  handleDrawerClose () {
-    this.setState({open: false});
+  handleMainDrawerClose () {
+    this.setState({mainDrawerOpen: false});
   }
 
   renderContent () {
@@ -56,19 +54,28 @@ class Header extends Component {
       case null:
         return (<CircularProgress color="accent"/>);
       case false:
-        return (<li><a href="/auth/google">Login With Google</a></li>);
+        return (
+          <ToolbarTitle key={'login'}>
+            <a href="/auth/google" className={classes.link}>
+              <Typography>
+                Login With Google
+              </Typography>
+            </a>
+          </ToolbarTitle>
+        );
+
       default:
         return (
           [
             <Payments key='pay'/>,
             <ToolbarTitle key='credits'>
-              <Typography className={classes.whiteText}>
+              <Typography>
                 Credits: ${this.props.auth.credits}
               </Typography>
             </ToolbarTitle>,
-            <ToolbarTitle key={'log'}>
+            <ToolbarTitle key={'logout'}>
               <a href="/api/logout" className={classes.link}>
-                <Typography className={classes.whiteText}>
+                <Typography>
                   Log Out
                 </Typography>
               </a>
@@ -78,44 +85,88 @@ class Header extends Component {
     }
   }
 
-  handleDrawerToggle = () => this.setState({open: !this.state.open});
+  handleMainDrawerToggle = () => this.setState({mainDrawerOpen: !this.state.mainDrawerOpen});
 
+  handleDotDrawerClick = event => {
+    this.setState({ dotDrawerOpen: true, anchorEl: event.currentTarget });
+  };
+
+  handleDotDrawerRequestClose = () => {
+    this.setState({ dotDrawerOpen: false });
+  };
   render () {
     const {classes} = this.props;
     //console.log(this.props)
     return (
-      <AppBar position='fixed' className={classNames(classes.root)}>
-        <Toolbar>
-          <IconButton
-            color="contrast"
-            aria-label="open drawer"
-            onClick={this.handleDrawerToggle}
+      <div>
+        <MuiThemeProvider theme={theme}>
+          <div>
+            <AppBar position='fixed' color={'primary'}>
+              <Toolbar>
+                <IconButton
+                  color="contrast"
+                  aria-label="open drawer"
+                  onClick={this.handleMainDrawerToggle}
 
-          >
-            <MenuIcon/>
-          </IconButton>
+                >
+                  <MenuIcon/>
+                </IconButton>
 
-          <Link className={classes.link}
-                to={this.props.auth ? '/surveys' : '/'}>
-            <Typography className={classes.whiteText} type="title" noWarp>
-              {'E-Voter'}
-            </Typography>
-          </Link>
+                <Link className={classes.link}
+                      to={this.props.auth ? '/surveys' : '/'}>
+                  <Typography className={classes.whiteText} type="title">
+                    {'E-Voter'}
+                  </Typography>
+                </Link>
 
-          <Toolbar>
-            {this.renderContent()}
-          </Toolbar>
-        </Toolbar>
+                <Toolbar>
+                  {this.renderContent()}
+                </Toolbar>
 
-        <Drawer
-          type="temporary"
-          open={this.state.open}
-          onRequestClose={this.handleDrawerToggle}
+                <Toolbar>
+                  <div>
+                    <IconButton
+                      aria-label="More"
+                      aria-owns={this.state.open ? 'long-menu' : null}
+                      aria-haspopup="true"
+                      onClick={this.handleClick}
+                    >
+                      <MoreVertIcon/>
+                    </IconButton>
+                    <Menu
+                      id="long-menu"
+                      anchorEl={this.state.anchorEl}
+                      open={this.state.open}
+                      onRequestClose={this.handleRequestClose}
+                      PaperProps={{
+                        style: {
+                          width: 200,
+                        },
+                      }}
+                    >
+                      {options.map(option => (
+                        <MenuItem key={'1'} onClick={this.handleRequestClose}>
+                          {option}
+                        </MenuItem>
+                      ))}
+                    </Menu>
+                  </div>
+                </Toolbar>
+              </Toolbar>
+            </AppBar>
 
-        >
-          <NestedList onLinkClick={this.handleDrawerClose}/>
-        </Drawer>
-      </AppBar>
+            <Drawer
+              title={'main drawer'}
+              type="temporary"
+              open={this.state.mainDrawerOpen}
+              onRequestClose={this.handleMainDrawerToggle}
+            >
+              <NestedList onLinkClick={this.handleMainDrawerClose}/>
+            </Drawer>
+
+          </div>
+        </MuiThemeProvider>
+      </div>
 
     )
       ;

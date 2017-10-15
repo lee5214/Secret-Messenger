@@ -7,18 +7,19 @@ import _ from 'lodash';
 import SurveyField from './InputField';
 import validateEmails from '../../utils/validateEmails';
 import formFields from './formFields';
-import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
 
 class SurveyForm extends Component {
   renderFields () {
     return _.map(formFields, ({label, name}) => {
-      return (<Field key={name}
-                    component={SurveyField}
-                    type='text'
-                    label={label}
-                    name={name}
-              />);
+      return (
+        <Field key={name}
+               component={SurveyField}
+               type='text'
+               label={label}
+               name={name}
+        />
+      );
     });
   }
 

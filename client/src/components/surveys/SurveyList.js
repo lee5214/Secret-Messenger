@@ -13,7 +13,6 @@ const styles = theme => ({
   },
   card: {
     minWidth: 300,
-    maxWidth: 400,
     flex: 1,
     align: 'center',
 
@@ -53,7 +52,7 @@ class SurveyList extends Component {
                 {survey.title}
 
               </Typography>
-              <Typography component="p">
+              <Typography>
                 {survey.body}
               </Typography>
               <p className={classes.pos}>
@@ -71,7 +70,6 @@ class SurveyList extends Component {
   }
 
   render () {
-    const {classes} = this.props;
     return (
 
           <Grid container justify={'center'} >
