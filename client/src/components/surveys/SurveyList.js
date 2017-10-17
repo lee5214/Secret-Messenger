@@ -42,8 +42,8 @@ class SurveyList extends Component {
     return this.props.surveys.reverse().map(survey => {
       const {classes} = this.props;
       return (
-        <Grid item>
-          <Card className={classes.card} key={survey._id}>
+        <Grid item key={survey._id}>
+          <Card className={classes.card}>
             <CardContent>
               <Typography type="body1" className={classes.title}>
 

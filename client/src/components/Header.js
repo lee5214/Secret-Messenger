@@ -14,10 +14,10 @@ import IconButton from 'material-ui/IconButton';
 import Menu, { MenuItem } from 'material-ui/Menu';
 import MenuIcon from 'material-ui-icons/Menu';
 import { CircularProgress } from 'material-ui/Progress';
-import NestedList from './test_NestedList';
+import MainDrawer from './MainDrawer';
 import theme from './themes/headerTheme';
 import MoreVertIcon from 'material-ui-icons/MoreVert';
-
+import ArrowForward from 'material-ui-icons/ArrowForward'
 const styles = theme => ({
   flex: {
     flex: 1,
@@ -27,10 +27,6 @@ const styles = theme => ({
     textDecoration: 'none',
   },
 });
-
-const options = [
-  'Log Out',
-];
 
 class Header extends Component {
   //array for mutiple elements output!
@@ -48,7 +44,7 @@ class Header extends Component {
     this.setState({mainDrawerOpen: false});
   }
 
-  renderContent () {
+  renderDotMenuContent(){
     const {classes} = this.props;
     switch (this.props.auth) {
       case null:
@@ -66,19 +62,44 @@ class Header extends Component {
 
       default:
         return (
-          [
-            <Payments key='pay'/>,
-            <ToolbarTitle key='credits'>
-              <Typography>
-                Credits: ${this.props.auth.credits}
-              </Typography>
-            </ToolbarTitle>,
             <ToolbarTitle key={'logout'}>
               <a href="/api/logout" className={classes.link}>
                 <Typography>
                   Log Out
                 </Typography>
               </a>
+            </ToolbarTitle>
+
+        );
+    }
+  }
+  renderContent () {
+    const {classes} = this.props;
+    switch (this.props.auth) {
+      case null:
+        return (<CircularProgress color="primary"/>);
+      case false:
+        return (
+          <ToolbarTitle key={'login'}>
+            <a href="/auth/google" className={classes.link}>
+              <Typography >
+                LOGIN
+                <ArrowForward/>
+              </Typography>
+
+
+            </a>
+          </ToolbarTitle>
+        );
+
+      default:
+        return (
+          [
+            <Payments key='pay'/>,
+            <ToolbarTitle key='credits'>
+              <Typography>
+                CREDITS: ${this.props.auth.credits}
+              </Typography>
             </ToolbarTitle>,
           ]
         );
@@ -87,11 +108,11 @@ class Header extends Component {
 
   handleMainDrawerToggle = () => this.setState({mainDrawerOpen: !this.state.mainDrawerOpen});
 
-  handleDotDrawerClick = event => {
+  handleDotMenuClick = event => {
     this.setState({ dotDrawerOpen: true, anchorEl: event.currentTarget });
   };
 
-  handleDotDrawerRequestClose = () => {
+  handleDotMenuRequestClose = () => {
     this.setState({ dotDrawerOpen: false });
   };
   render () {
@@ -127,28 +148,31 @@ class Header extends Component {
                   <div>
                     <IconButton
                       aria-label="More"
-                      aria-owns={this.state.open ? 'long-menu' : null}
+                      aria-owns={this.state.dotDrawerOpen ? 'long-menu' : null}
                       aria-haspopup="true"
-                      onClick={this.handleClick}
+                      onClick={this.handleDotMenuClick}
+                      style={{color:'white'}}
                     >
                       <MoreVertIcon/>
                     </IconButton>
+
                     <Menu
                       id="long-menu"
                       anchorEl={this.state.anchorEl}
-                      open={this.state.open}
-                      onRequestClose={this.handleRequestClose}
+                      open={this.state.dotDrawerOpen}
+                      onRequestClose={this.handleDotMenuRequestClose}
                       PaperProps={{
                         style: {
                           width: 200,
+                          backgroundColor: theme.palette.grey[800],
                         },
                       }}
                     >
-                      {options.map(option => (
-                        <MenuItem key={'1'} onClick={this.handleRequestClose}>
-                          {option}
+
+                        <MenuItem key={'1'} onClick={this.handleDotMenuRequestClose}>
+                          {this.renderDotMenuContent()}
                         </MenuItem>
-                      ))}
+
                     </Menu>
                   </div>
                 </Toolbar>
@@ -161,7 +185,7 @@ class Header extends Component {
               open={this.state.mainDrawerOpen}
               onRequestClose={this.handleMainDrawerToggle}
             >
-              <NestedList onLinkClick={this.handleMainDrawerClose}/>
+              <MainDrawer onLinkClick={this.handleMainDrawerClose}/>
             </Drawer>
 
           </div>

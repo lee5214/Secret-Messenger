@@ -4,7 +4,6 @@ import green from 'material-ui/colors/green';
 import red from 'material-ui/colors/red';
 const theme = createMuiTheme({
   "direction": "rtl",
-
   "palette": {
     "type": "light",
       "common": {
@@ -350,6 +349,14 @@ const theme = createMuiTheme({
     "popover": 2100,
     "snackbar": 2900,
     "tooltip": 3000
+  },
+  overrides: {
+    MuiMenu: {
+
+    },
+    MuiButton: {
+
+    }
   }
 });
 export default theme;

@@ -15,7 +15,6 @@ const styles = theme => ({
 const InputField = ({classes, label, input, meta: {error, touched}}) => {
   return (
     //{touched && error} => es6 syntax sugar, when true && string, it returns the string
-    <Paper>
       <TextField
         {...input}
         label={label}
@@ -25,7 +24,6 @@ const InputField = ({classes, label, input, meta: {error, touched}}) => {
         className={classes.root}
         helperTextClassName={classes.helperText}
       />
-    </Paper>
   );
 }
 

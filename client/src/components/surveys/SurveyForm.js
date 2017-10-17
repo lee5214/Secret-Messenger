@@ -1,24 +1,27 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router-dom';
-//reduxForm is very similar as connect function
 import _ from 'lodash';
-
-import SurveyField from './InputField';
+import InputField from './InputField';
 import validateEmails from '../../utils/validateEmails';
 import formFields from './formFields';
 import Button from 'material-ui/Button';
+import Grid from 'material-ui/Grid';
+import CheckIcon from 'material-ui-icons/Check';
+import ClearIcon from 'material-ui-icons/Clear';
 
 class SurveyForm extends Component {
   renderFields () {
     return _.map(formFields, ({label, name}) => {
       return (
-        <Field key={name}
-               component={SurveyField}
-               type='text'
-               label={label}
-               name={name}
-        />
+        <Grid item sm={12}>
+          <Field key={name}
+                 component={InputField}
+                 type='text'
+                 label={label}
+                 name={name}
+          />
+        </Grid>
       );
     });
   }
@@ -26,21 +29,36 @@ class SurveyForm extends Component {
   render () {
     return (
       <div>
-        <form onSubmit={this.props.handleSubmit(this.props.onSurveySubmit)}>
-          {this.renderFields()}
+        SurveyForm:
+        <Grid container justify={'center'} align={'center'}>
+          <Grid item sm={6}>
 
-          <Button>
-            <Link to='/surveys'>
-              Cancel
-            </Link>
-          </Button>
-
-          <Button type='submit'>
-            Next
-            <i className='material-icons'>done</i>
-          </Button>
-        </form>
-        SurveyForm!
+            <form onSubmit={this.props.handleSubmit(this.props.onSurveySubmit)}>
+              <Grid container justify={'center'} align={'center'}>
+                <Grid item>
+              {this.renderFields()}
+                </Grid>
+              </Grid>
+              <br/>
+              <Grid container justify={'center'} align={'center'}>
+                <Grid item >
+                  <Button>
+                    <Link to='/surveys' style={{textDecoration: 'none'}}>
+                      Cancel
+                    </Link>
+                    <ClearIcon/>
+                  </Button>
+                </Grid>
+                <Grid item >
+                  <Button type='submit'>
+                    Next
+                    <CheckIcon/>
+                  </Button>
+                </Grid>
+              </Grid>
+            </form>
+          </Grid>
+        </Grid>
       </div>
     );
   }

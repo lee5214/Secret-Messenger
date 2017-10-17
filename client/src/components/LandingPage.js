@@ -5,9 +5,9 @@ import Typography from 'material-ui/Typography'
 const Landing = () => {
   return (
     <Grid container justify={'center'}>
-      <Grid item  md={12}>
+      <Grid item>
         <Grid container justify={'center'}>
-          <Grid item  sm={10} md={6}>
+          <Grid item sm={12} >
             <Typography
               type={'headline'}
             >
@@ -17,14 +17,12 @@ const Landing = () => {
         </Grid>
 
         <Grid container justify={'center'}>
-          <Grid item  sm={10} md={6}>
+          <Grid item  sm={12} >
             <List>
               <ListItem>
                 <ListItemText inset
-                              primary="Welcome to my site, this is a fun project I created when learning React."/>
+                              primary="Welcome to my OPA, this is a fun project I created while learning MERN."/>
               </ListItem>
-
-
               <ListItem>
                 <ListItemText inset primary="Backend == Nodejs && Express"/>
               </ListItem>
@@ -35,6 +33,11 @@ const Landing = () => {
               <ListItem>
                 <ListItemText inset
                               primary="Design spec == Google Material Design"/>
+              </ListItem>
+
+              <ListItem>
+                <ListItemText inset
+                              secondary="*Payment function is in test mode, feel free to input fake card info for credits"/>
               </ListItem>
             </List>
           </Grid>
