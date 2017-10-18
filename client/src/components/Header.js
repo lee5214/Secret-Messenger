@@ -77,17 +77,15 @@ class Header extends Component {
     const {classes} = this.props;
     switch (this.props.auth) {
       case null:
-        return (<CircularProgress color="primary"/>);
+        return (<CircularProgress color='primary'/>);
       case false:
         return (
           <ToolbarTitle key={'login'}>
             <a href="/auth/google" className={classes.link}>
-              <Typography >
+              <Typography>
                 LOGIN
                 <ArrowForward/>
               </Typography>
-
-
             </a>
           </ToolbarTitle>
         );

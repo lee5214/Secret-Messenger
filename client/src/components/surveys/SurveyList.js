@@ -30,7 +30,14 @@ const styles = theme => ({
   pos: {
     marginBottom: 12,
     color: theme.palette.text.secondary,
+    display: 'flex',
+    alignItems: 'center',
+    justify:'center'
   },
+  posSection: {
+    width: '50%',
+    flex: 1,
+  }
 });
 
 class SurveyList extends Component {
@@ -60,8 +67,8 @@ class SurveyList extends Component {
               </p>
             </CardContent>
             <div className={classes.pos}>
-              <a>Yes: {survey.yes}</a>
-              <a>No: {survey.no}</a>
+              <div className={classes.posSection}>Yes: {survey.yes}</div>
+              <div className={classes.posSection}>No: {survey.no}</div>
             </div>
           </Card>
         </Grid>

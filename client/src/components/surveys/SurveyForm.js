@@ -29,19 +29,19 @@ class SurveyForm extends Component {
   render () {
     return (
       <div>
-        SurveyForm:
         <Grid container justify={'center'} align={'center'}>
           <Grid item sm={6}>
 
             <form onSubmit={this.props.handleSubmit(this.props.onSurveySubmit)}>
               <Grid container justify={'center'} align={'center'}>
                 <Grid item>
-              {this.renderFields()}
+                  {this.renderFields()}
                 </Grid>
               </Grid>
+
               <br/>
               <Grid container justify={'center'} align={'center'}>
-                <Grid item >
+                <Grid item>
                   <Button>
                     <Link to='/surveys' style={{textDecoration: 'none'}}>
                       Cancel
@@ -49,7 +49,7 @@ class SurveyForm extends Component {
                     <ClearIcon/>
                   </Button>
                 </Grid>
-                <Grid item >
+                <Grid item>
                   <Button type='submit'>
                     Next
                     <CheckIcon/>

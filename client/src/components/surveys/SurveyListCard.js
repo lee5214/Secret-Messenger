@@ -26,6 +26,9 @@ const styles = theme => ({
   pos: {
     marginBottom: 12,
     color: theme.palette.text.secondary,
+    flex: 1,
+    align: 'center',
+    justify: 'space-around'
   },
 });
 

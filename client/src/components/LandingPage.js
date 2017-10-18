@@ -37,7 +37,7 @@ const Landing = () => {
 
               <ListItem>
                 <ListItemText inset
-                              secondary="*Payment function is in test mode, feel free to input fake card info for credits"/>
+                              secondary="*Payment function is in test mode, please use 4242-4242-4242-4242 card num for credits"/>
               </ListItem>
             </List>
           </Grid>

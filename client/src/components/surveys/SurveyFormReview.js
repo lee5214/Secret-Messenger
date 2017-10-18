@@ -7,8 +7,12 @@ import * as actions from '../../actions';
 import SurveyForm from './SurveyForm';
 import formFIELDS from './formFields';
 import Grid from 'material-ui/Grid';
+import Button from 'material-ui/Button';
+import ArrowBack from 'material-ui-icons/ArrowBack';
+import ArrowForward from 'material-ui-icons/ArrowForward';
 
 const SurveyFormReview = ({onCancel, formValues, submitSurvey, history}) => {
+
   const reviewFields = _.map(formFIELDS, ({label, name}) => {
     return (
       <div key={name}>
@@ -16,32 +20,54 @@ const SurveyFormReview = ({onCancel, formValues, submitSurvey, history}) => {
         <div>
           {formValues[name]}
         </div>
+        <br/>
       </div>
     );
   });
   return (
     <div>
-      <Grid container justfiy={'center'} alignItems={'center'}>
-        <Grid item sm={6}>
-
-          Please review page
-          <Grid container>
+      <Grid container justify={'center'} alignItems={'center'}>
+        <Grid item sm={8}>
+          <Grid container justify={'center'} alignItems={'center'}>
             <Grid item>
-          {reviewFields}
+              <h2>Please double check before sending the email</h2>
             </Grid>
-          <Grid item>
-            {SurveyForm}
           </Grid>
-          <button
-            onClick={onCancel}>
-            Back
-          </button>
-          <button
-            onClick={() => submitSurvey(formValues, history)}
-          >
-            Send Survey
-            <i>email</i>
-          </button>
+        </Grid>
+
+        <Grid item sm={8}>
+          <Grid container justify={'center'} alignItems={'center'}>
+            <Grid item>
+              {reviewFields}
+            </Grid>
+          </Grid>
+          <br/>
+          <Grid container justify={'center'} alignItems={'center'}>
+            <Grid item>
+              {SurveyForm}
+            </Grid>
+          </Grid>
+
+          <Grid container justify={'center'} alignItems={'center'}>
+            <Grid item>
+              <Button
+                onClick={onCancel}>
+                <ArrowBack/>
+                Back
+
+              </Button>
+            </Grid>
+            <Grid item>
+              <Button
+                onClick={() => submitSurvey(formValues, history)}
+              >
+                Send
+                <ArrowForward/>
+              </Button>
+            </Grid>
+            <Grid item>
+
+            </Grid>
           </Grid>
         </Grid>
       </Grid>
