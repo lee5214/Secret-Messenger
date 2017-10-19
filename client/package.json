@@ -12,16 +12,16 @@
   },
   "dependencies": {
     "axios": "^0.16.2",
-    "material-ui": "^1.0.0-beta.13",
-    "material-ui-icons": "^1.0.0-beta.15",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
+    "material-ui": "^1.0.0-beta.17",
+    "material-ui-icons": "^1.0.0-beta.17",
+    "react": "^15.6.2",
+    "react-dom": "^15.6.2",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.0.13",
     "react-stripe-checkout": "^2.6.3",
     "redux": "^3.7.2",
-    "redux-form": "^7.0.4",
+    "redux-form": "^7.1.1",
     "redux-thunk": "^2.2.0"
   },
   "scripts": {

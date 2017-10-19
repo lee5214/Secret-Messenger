@@ -26,6 +26,9 @@ const styles = theme => ({
     flex: 1,
     textDecoration: 'none',
   },
+  title: {
+    minWidth: 240,
+  }
 });
 
 class Header extends Component {
@@ -133,8 +136,8 @@ class Header extends Component {
 
                 <Link className={classes.link}
                       to={this.props.auth ? '/surveys' : '/'}>
-                  <Typography className={classes.whiteText} type="title">
-                    {'E-Voter'}
+                  <Typography className={classes.title} type="title">
+                    {'Anonymous Q&A'}
                   </Typography>
                 </Link>
 
@@ -179,6 +182,7 @@ class Header extends Component {
 
             <Drawer
               title={'main drawer'}
+              anchor={theme.direction === 'rtl' ? 'right' : 'left'}
               type="temporary"
               open={this.state.mainDrawerOpen}
               onRequestClose={this.handleMainDrawerToggle}
