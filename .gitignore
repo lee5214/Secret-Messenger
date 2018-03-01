@@ -1,5 +1,4 @@
 node_modules
 dev.js
-/client/.env.development
-/client/.env.production
-
+app.yaml
+config
