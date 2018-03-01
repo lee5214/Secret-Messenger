@@ -1,6 +1,5 @@
 //prod.js - production keys here! dont modify!
 module.exports = {
-  redirectDomain:process.env.REDIRECT_DOMAIN,
   googleClientId: process.env.GOOGLE_CLIENT_ID,
   googleClientSecret: process.env.GOOGLE_CLIENT_SECRET,
   mongoURI: process.env.MONGO_URI,

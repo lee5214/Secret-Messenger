@@ -1,0 +1,12 @@
+env: flex
+runtime: nodejs
+env_variables:
+  NODE_ENV:  production
+  REACT_APP_STRIPE_KEY: pk_test_66Hx2V3g0dCv7mYKNx1KJILy
+  GOOGLE_CLIENT_ID: 743761833330-9vamiaibic9olj0i07g3t20i923n7tif.apps.googleusercontent.com
+  GOOGLE_CLIENT_SECRET: kheIfl4g22rnoM-RjK2qfP2L
+  MONGO_URI: mongodb://lee5214:5214yuna@ds135444.mlab.com:35444/emaily-lee5214
+  COOKIE_KEY: lee5214secretmessengerdsuopgjodiafgnos
+  STRIPE_PUBLISHABLE_KEY: pk_test_66Hx2V3g0dCv7mYKNx1KJILy
+  STRIPE_SECRET_KEY: sk_test_q05W5IXGc2uct5r2O0hRCtyd
+  SEND_GRID_KEY: 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

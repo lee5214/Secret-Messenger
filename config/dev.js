@@ -1,6 +1,5 @@
 //dev.js file contains dev keys, no modify!
 module.exports = {
-  redirectDomain:'http://localhost:3000',
   googleClientId: '470954494790-69bkfah88v9ctoro28rmnprnmcftuvb9.apps.googleusercontent.com',
   googleClientSecret: 'eEf6Jg5HwCgkCw7G5W_5gW-g',
   mongoURI: 'mongodb://lee5214:5214yuna@ds135444.mlab.com:35444/emaily-lee5214',

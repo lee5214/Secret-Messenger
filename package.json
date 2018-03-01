@@ -1,5 +1,5 @@
 {
-  "name": "server",
+  "name": "secretmessenger",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,9 +11,11 @@
     "start": "node index.js",
     "server": "nodemon index.js",
     "client": "npm run start --prefix client",
+    "client-build": "npm run build --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\" \"npm run webhook\" ",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
-    "webhook": "lt -p 5000 -s lee5214"
+    "webhook": "lt -p 5000 -s lee5214",
+    "deploy-google": "npm run client-build && gcloud app deploy"
   },
   "author": "",
   "license": "ISC",

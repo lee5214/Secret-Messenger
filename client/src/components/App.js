@@ -10,9 +10,6 @@ import Header from './Header';
 import LandingPage from './LandingPage';
 import Dashboard from './Dashboard';
 import SurveyNew from './surveys/SurveyNew';
-import { MuiThemeProvider } from 'material-ui/styles';
-import dashboardTheme from './themes/dashboardTheme';
-import headerTheme from './themes/headerTheme';
 import Test from './Test';
 
 const styles = {
@@ -31,12 +28,12 @@ class App extends Component {
           <div>
             /**/
             <Header/>
-              <div style={styles.main}>
-                <Route exact={true} path="/" component={LandingPage}/>
-                <Route exact path="/surveys" component={Dashboard}/>
-                  <Route path="/surveys/new" component={SurveyNew}/>
-                <Route path="/surveys/test" component={Test}/>
-              </div>
+            <div style={styles.main}>
+              <Route exact={true} path="/" component={LandingPage}/>
+              <Route exact path="/surveys" component={Dashboard}/>
+              <Route path="/surveys/new" component={SurveyNew}/>
+              <Route path="/surveys/test" component={Test}/>
+            </div>
           </div>
         </BrowserRouter>
       </div>
