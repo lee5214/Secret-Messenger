@@ -1,8 +1,8 @@
-SecretMessenger
+Secret Messenger
 ==============
 
 ### Description
-This is a full-stack project I created as my all-in-one SPA & website for a simple masked email system of sending/replying functionality
+This is a full-stack react/express project for a simple task: communicating through masked email and collect targets' response.
 
 
 ### Demo
@@ -11,7 +11,7 @@ https://sm.cong-li.com
 
 ### Credits
 >Client
->> `React, Redux, Webpack`
+>> `React, Redux, Webpack, Stripe, MaterialUI`
 
 >Server
 >> `Express, Node, Gooeld Cloud, MongoDB, SendGrid, Travis CI`
