@@ -87,7 +87,7 @@ class Header extends Component {
             <a href="/auth/google" className={classes.link}>
               <Typography>
                 LOGIN
-                <ArrowForward/>
+                {/*<ArrowForward/>*/}
               </Typography>
             </a>
           </ToolbarTitle>
@@ -137,7 +137,7 @@ class Header extends Component {
                 <Link className={classes.link}
                       to={this.props.auth ? '/surveys' : '/'}>
                   <Typography className={classes.title} type="title">
-                    {'Anonymous Q&A'}
+                    {'Secret Messenger'}
                   </Typography>
                 </Link>
 

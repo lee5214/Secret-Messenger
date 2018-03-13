@@ -7,6 +7,9 @@
     "node": "8.4.0",
     "npm": "5.3.0"
   },
+  "author": "Cong Li",
+  "license": "ISC",
+  "repository": "github:lee5214/Collaborative-Markdown",
   "scripts": {
     "start": "node index.js",
     "server": "nodemon index.js",
@@ -15,10 +18,8 @@
     "dev": "concurrently \"npm run server\" \"npm run client\" \"npm run webhook\" ",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
     "webhook": "lt -p 5000 -s lee5214",
-    "deploy-google": "npm run client-build && gcloud app deploy"
+    "deploy-google": "npm run client-build && gcloud app deploy --project secretmessenger-196511"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.1",
     "concurrently": "^3.5.0",

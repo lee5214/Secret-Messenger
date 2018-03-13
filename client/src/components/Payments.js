@@ -19,8 +19,8 @@ class Payments extends Component {
       //amount in cents
       //token is callback object get from stripe representing the charge info
       <StripeCheckout
-        name="Time for your payment"
-        description="$5 NOW!"
+        name="Payment Function Test"
+        description="card number: 4242-4242-4242-4242"
         amount={500}
         token={token => this.props.handleToken(token)}
         stripeKey={process.env.REACT_APP_STRIPE_KEY}

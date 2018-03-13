@@ -13,9 +13,6 @@ import reduxThunk from 'redux-thunk';
 import App from './components/App';
 import reducers from './reducers';
 //use for test sendgrid function, send POST in terminal
-import axios from 'axios';
-
-window.axios = axios;
 /*
 then in console:
 const survey = {title: 'fake',subject:'subject', recipients:'congli5214@gmail.com',body:'bodddddddddy'};
