@@ -9,7 +9,7 @@
   },
   "author": "Cong Li",
   "license": "ISC",
-  "repository": "github:lee5214/Collaborative-Markdown",
+  "repository": "github:lee5214/Secret-Messenger",
   "scripts": {
     "start": "node index.js",
     "server": "nodemon index.js",
